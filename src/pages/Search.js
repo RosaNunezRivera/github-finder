@@ -15,8 +15,8 @@ function Search({ getDataUser}) {
   const API_URL = 'https://api.github.com/users';
   const token = process.env.REACT_APP_GITHUB_TOKEN;
           
-  const fetchData = useCallback(async () => {
-    const options = { headers: { Authorization: `Bearer ${token}` } };
+  const fetchData = async () => {
+    const options = { headers: { Authorization: `token ${token}` } };
     try {
       
       const response = await axios.get(`${API_URL}/${userName}`, options);
@@ -32,7 +32,7 @@ function Search({ getDataUser}) {
       setMessage('User not found. Try again!');
       getDataUser(null);
     }
-  }, [userName, getDataUser, navigate, token]);
+  };
 
   const onSubmit = (event) => {
     event.preventDefault(); 
